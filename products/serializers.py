@@ -1,5 +1,16 @@
 from rest_framework import serializers
-from .models import Product
+from .models import Product,Category
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Category
+        fields='__all__'
+
+    def validate_name(self,data):
+        if len(data)<3:
+            raise serializers.ValidationError("Length of the name should be greater than 3")
+
+        return data     
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
