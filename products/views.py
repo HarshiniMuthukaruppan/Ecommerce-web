@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import viewsets
 from .models import Product,Category
+from rest_framework.permissions import IsAuthenticated
 from .serializers import ProductSerializer,CategorySerializer
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -13,5 +14,6 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset=Product.objects.all()
     serializer_class=ProductSerializer
+    permission_classes=[IsAuthenticated]
 
 
